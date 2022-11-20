@@ -5,7 +5,7 @@ export class Product {
   price: number;
   imageUrl: string;
 
-  constructor(id, name, description='', price=0, imageUrl=''){
+  constructor(id=1, name='', description='', price=0, imageUrl=''){
     this.id = id
     this.name = name 
     this.description = description
@@ -13,5 +13,5 @@ export class Product {
     this.imageUrl = imageUrl
   }
 
-  
+
 }

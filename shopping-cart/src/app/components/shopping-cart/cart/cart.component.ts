@@ -14,9 +14,14 @@ export class CartComponent implements OnInit {
     { id: 4, productId: 4, productName: 'Test4', qty: 3, price: 200},
   ];
 
+  cartTotal = 0
+
   constructor() { }
 
   ngOnInit(): void {
+    this.cartItems.forEach(item => {
+      this.cartTotal += (item.qty * item.price)
+    })
   }
 
 }

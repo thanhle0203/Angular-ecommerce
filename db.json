@@ -1,4 +1,37 @@
 {
+  "products": [
+    {
+      "id": 1,
+      "name": "Rubik's Cube",
+      "description": "Optimation Solution for Rubik's Cube",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Scramble.svg/1200px-Scramble.svg.png",
+      "price": 299
+    },
+    {
+      "id": 2,
+      "name": "Rubik's Cube",
+      "description": "Optimation Solution for Rubik's Cube",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Scramble.svg/1200px-Scramble.svg.png",
+      "price": 299
+    },
+    {
+      "id": 3,
+      "name": "Rubik's Cube",
+      "description": "Optimation Solution for Rubik's Cube",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Scramble.svg/1200px-Scramble.svg.png",
+      "price": 299
+    },
+    {
+      "id": 4,
+      "name": "Rubik's Cube",
+      "description": "Optimation Solution for Rubik's Cube",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Scramble.svg/1200px-Scramble.svg.png",
+      "price": 299
+    }
+  ],
+  "cart": [
+    
+  ],
   "posts": [
     {
       "id": 1,

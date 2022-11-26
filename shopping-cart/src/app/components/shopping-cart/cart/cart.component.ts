@@ -23,25 +23,40 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.handleSubsciption()
-    this.loadCartItems()
-  }
-
-  handleSubsciption() {
-    this.msg.getMsg().subscribe(() => {
-      this.loadCartItems()
+    this.msg.getMsg().subscribe((product: Product) => {
+      this.addProductToCart(product) 
     })
   }
 
-  loadCartItems() {
-    this.calcCartTotal();
+  addProductToCart(product: Product) {
+    let productExists = false 
+
+    for (let i in this.cartItems) {
+      if (this.cartItems[i].productId === product.id) {
+        this.cartItems[i].qty++
+        productExists = true 
+        break;
+      }
+    }
+
+    if (!productExists) {
+      this.cartItems.push({
+        productId: product.id,
+        productName: product.name,
+        qty: 1,
+        price: product.price,
+        id: 0
+      })
+    }
+    
+    this.cartTotal=0
+    this.cartItems.forEach(
+      item=>{
+        this.cartTotal += (item.qty*item.price)
+      }
+    )
   }
 
-  calcCartTotal() {
-    this.cartTotal = 0
-    this.cartItems.forEach(item => {
-      this.cartTotal += (item.qty * item.price)
-    })
-  }
+
 
 }

@@ -1,3 +1,4 @@
+import { CartService } from './../../../services/cart.service';
 import { Product } from 'src/app/models/product';
 import { Component, OnInit } from '@angular/core';
 import { MessengerService } from 'src/app/services/messenger.service';
@@ -18,16 +19,24 @@ export class CartComponent implements OnInit {
 
   cartTotal = 0
 
-  constructor(private msg: MessengerService) { 
-  }
+  constructor(
+    private msg: MessengerService,
+    private cartService: CartService
+  ) { }
 
   ngOnInit() {
-    
+    this.handleSubscription();
   }
 
   handleSubscription() {
     this.msg.getMsg().subscribe((product: Product) => {
       this.addProductToCart(product) 
+    })
+  }
+
+  loadCartItems() {
+    this.cartService.getCartItems().subscribe((items: CartItem[]) => {
+      console.log(items)
     })
   }
 
@@ -58,6 +67,8 @@ export class CartComponent implements OnInit {
     //     this.cartTotal += (item.qty*item.price)
     //   }
     // )
+
+    this.calcCartTotal();
   }
 
   calcCartTotal() {
@@ -70,3 +81,7 @@ export class CartComponent implements OnInit {
   }
 
 }
+function items(items: any, arg1: (CartItem: any) => void) {
+  throw new Error('Function not implemented.');
+}
+

@@ -14,6 +14,7 @@ export class CartService {
   constructor(private http: HttpClient) { }
 
   getCartItems(): Observable<CartItem[]> {
+    //TODO: Mapping the obtained result to our CartItem props (pipe() and map())
     return this.http.get<CartItem[]>(cartUrl);
   }
 

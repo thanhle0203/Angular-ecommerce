@@ -3,8 +3,8 @@ export class Cart {
   id: number;
   productId: number;
   productName: string;
-  qty: number | undefined;
-  price: number | undefined;
+  qty: number;
+  price: number;
 
   constructor(id: number, product: Product, qty=0) {
     this.id = id;

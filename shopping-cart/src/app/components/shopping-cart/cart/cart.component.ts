@@ -2,7 +2,7 @@ import { CartService } from './../../../services/cart.service';
 import { Product } from 'src/app/models/product';
 import { Component, OnInit } from '@angular/core';
 import { MessengerService } from 'src/app/services/messenger.service';
-
+import { CartItem } from 'src/app/models/cart-item';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -10,12 +10,7 @@ import { MessengerService } from 'src/app/services/messenger.service';
 })
 export class CartComponent implements OnInit {
 
-  cartItems = [
-    // { id: 1, productId: 1, productName: 'Test1', qty: 4, price: 100},
-    // { id: 2, productId: 2, productName: 'Test2', qty: 5, price: 150},
-    // { id: 3, productId: 3, productName: 'Test3', qty: 2, price: 120},
-    // { id: 4, productId: 4, productName: 'Test4', qty: 3, price: 200},
-  ];
+  cartItems = [];
 
   cartTotal = 0
 
@@ -26,18 +21,29 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.handleSubscription();
+    this.loadCartItems();
   }
 
   handleSubscription() {
     this.msg.getMsg().subscribe((product: Product) => {
-      this.addProductToCart(product) 
+    this.loadCartItems();
     })
   }
 
   loadCartItems() {
     this.cartService.getCartItems().subscribe((items: CartItem[]) => {
-      console.log(items)
+      // this.cartItems = items;
+      this.calcCartTotal();
     })
+  }
+
+  calcCartTotal() {
+    this.cartTotal=0
+    this.cartItems.forEach(
+      item=>{
+        this.cartTotal += (item.qty * item.price)
+      }
+    ) 
   }
 
   addProductToCart(product: Product) {
@@ -71,17 +77,8 @@ export class CartComponent implements OnInit {
     this.calcCartTotal();
   }
 
-  calcCartTotal() {
-    this.cartTotal=0
-    this.cartItems.forEach(
-      item=>{
-        this.cartTotal += (item.qty*item.price)
-      }
-    ) 
-  }
+  
 
 }
-function items(items: any, arg1: (CartItem: any) => void) {
-  throw new Error('Function not implemented.');
-}
+
 
